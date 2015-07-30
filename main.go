@@ -16,7 +16,7 @@ func checkError(err error) {
 	}
 }
 
-func extractPackage(filename string) (string, error) {
+func extractFilePackage(filename string) (string, error) {
 	regex, err := regexp.Compile("^ *package (.*)$")
 	checkError(err)
 	fh, err := os.Open(filename)
@@ -38,7 +38,7 @@ func extractPackage(filename string) (string, error) {
 	}
 }
 
-func main() {
+func extractPackage() string {
 	workingDir, err := os.Getwd()
 	checkError(err)
 	dirFiles, err := ioutil.ReadDir(workingDir)
@@ -57,7 +57,7 @@ func main() {
 	}
 	packageNames := make(map[string]bool)
 	for _, file := range goFiles {
-		packageName, err := extractPackage(file)
+		packageName, err := extractFilePackage(file)
 		checkError(err)
 		packageNames[packageName] = true
 	}
@@ -70,5 +70,5 @@ func main() {
 		packageName = k
 		break
 	}
-	println(packageName)
+	return packageName
 }
