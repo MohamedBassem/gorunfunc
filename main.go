@@ -91,19 +91,16 @@ func main() {
 	dryRun := flag.Bool("dry-run", false, "Print the test file")
 	flag.Parse()
 
+	packageName := extractPackage()
+
 	args := flag.Args()
 	if len(args) == 0 {
-		log.Fatal("Err: At least a function name should be given")
+		log.Fatal("Err: A function call must be given")
 	}
 
-	packageName := extractPackage()
-	functionName := args[0]
-	functionArgs := ""
-	if len(args) > 1 {
-		functionArgs = strings.Join(args[1:], ", ")
-	}
+	functionCall := args[0]
 
-	fileContent := fmt.Sprintf(templateString, packageName, randString(10), functionName, functionArgs)
+	fileContent := fmt.Sprintf(templateString, packageName, randString(10), functionCall)
 	if *dryRun {
 		fmt.Println(fileContent)
 	}
@@ -113,6 +110,6 @@ var templateString = `package %v
 import "testing"
 
 func Test_%v(t *testing.T) {
-	  %v(%v)
+	  %v
 }
 `
