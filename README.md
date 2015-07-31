@@ -1,6 +1,6 @@
 #GoRunFunc
 
-[![asciicast](https://asciinema.org/a/24190.png)](https://asciinema.org/a/24190)
+[![asciicast](https://raw.githubusercontent.com/MohamedBassem/gorunfunc/master/example.gif)](https://raw.githubusercontent.com/MohamedBassem/gorunfunc/master/example.gif)
 
  Cherry-pick go functions to run from cmd.
 
