@@ -136,14 +136,20 @@ func init() {
 
 func main() {
 	dryRun := flag.Bool("dry-run", false, "Print the test file")
+	printHelp := flag.Bool("help", false, "Prints Help")
 	flag.Parse()
 
-	packageName := extractPackage()
-
 	args := flag.Args()
-	if len(args) == 0 {
-		log.Fatal("Err: A function call must be given")
+	if len(args) == 0 || *printHelp {
+		fmt.Println("Usage: gorunfunc [--dry-run] '<code to execute>'\nExecutes go code or functions in the context of the work directory package.")
+		if !*printHelp {
+			os.Exit(1)
+		} else {
+			os.Exit(0)
+		}
 	}
+
+	packageName := extractPackage()
 
 	functionCall := args[0]
 
