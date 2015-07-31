@@ -29,18 +29,27 @@ package hello
 import "fmt"
 
 func helloWorld() {
-	fmt.Println("Hello World!")
+        fmt.Println("Hello World!")
+}
+
+func SayHi() {
+        helloWorld()
+        fmt.Println("Hi!")
 }
 
 func otherThings() {
-	// ....
+        // ....
 }
 ```
 
-If we want to run the `helloWorld` function, for debugging purposes for example, execute:
+If we want to run `helloWorld` and `SayHi` functions, for debugging purposes for example, execute:
 ```bash
 $ gorunfunc 'helloWorld()'
 Hello World!
+
+$ gorunfunc 'SayHi()'
+Hello World!
+Hi!
 ````
 
 ##How It Works
@@ -53,6 +62,8 @@ Hello World!
 
 To check the generated test file without execution, run the command with `--dry-run` flag. For instance, the dry run of the example would print:
 ```go
+$ gorunfunc --dry-run 'helloWorld()'
+
 package hello
 
 import "testing"
