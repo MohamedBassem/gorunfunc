@@ -51,4 +51,13 @@ Hello World!
 - The test is executed.
 - The test file is removed.
 
-To check the generated test file without execution, run the command with `--dry-run` flag.
+To check the generated test file without execution, run the command with `--dry-run` flag. For instance, the dry run of the example would print:
+```bash
+package hello
+
+import "testing"
+
+func Test_jBE07UXZ58(t *testing.T) {
+        helloWorld()
+}
+```
