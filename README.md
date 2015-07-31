@@ -20,7 +20,8 @@ In the package root folder run:
 gorunfunc '<function call>'
 ```
 
-Example:
+###Example
+
 Assuming we have a package file containing:
 ```go
 package hello
