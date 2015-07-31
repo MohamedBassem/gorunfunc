@@ -4,7 +4,7 @@
 
 A tool to run certain go functions in a package.
 
-#Installation
+##Installation
 
 ```bash
 # If you already have goimports, ignore the following command
@@ -13,14 +13,14 @@ go get golang.org/x/tools/cmd/goimports
 go get github.com/MohamedBassem/gorunfunc
 ```
 
-#Usage
+##Usage
 
 In the package root folder run:
 ```bash
 gorunfunc '<function call>'
 ```
 
-###Example
+####Example
 
 Assuming we have a package file containing:
 ```go
@@ -43,7 +43,7 @@ $ gorunfunc 'helloWorld()'
 Hello World!
 ````
 
-#How It Works
+##How It Works
 
 - The package name is extracted from other files in the directory.
 - A go test file is generated with the input function as the test body.
