@@ -1,6 +1,6 @@
 #GoRunFunc
 
-[![asciicast](https://asciinema.org/a/8bjpolygkl1za9tx8ojqozy7l.png)](https://asciinema.org/a/8bjpolygkl1za9tx8ojqozy7l)
+[![asciicast](https://asciinema.org/a/24190.png)](https://asciinema.org/a/24190)
 
 A tool to run certain go functions in a package.
 
