@@ -15,6 +15,14 @@ import (
 	"time"
 )
 
+var templateString = `package %v
+import "testing"
+
+func Test_%v(t *testing.T) {
+	  %v
+}
+`
+
 func checkError(err error) {
 	if err != nil {
 		log.Fatal("ERR: " + err.Error())
@@ -152,11 +160,3 @@ func main() {
 		runFile(testRandomName, testFileName)
 	}
 }
-
-var templateString = `package %v
-import "testing"
-
-func Test_%v(t *testing.T) {
-	  %v
-}
-`
