@@ -39,7 +39,8 @@ func otherThings() {
 
 If we want to run the `helloWorld` function, for debugging purposes for example, execute:
 ```bash
-gorunfunc 'helloWorld()'
+$ gorunfunc 'helloWorld()'
+Hello World!
 ````
 
 #How It Works
