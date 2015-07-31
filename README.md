@@ -17,7 +17,7 @@ go get github.com/MohamedBassem/gorunfunc
 
 In the package root folder run:
 ```bash
-gorunfunc '<function call>'
+gorunfunc '<function call or code to execute>'
 ```
 
 ####Example
