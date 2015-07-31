@@ -2,7 +2,7 @@
 
 [![asciicast](https://asciinema.org/a/24190.png)](https://asciinema.org/a/24190)
 
- A tool to run go code or functions in the context of the working directory package. 
+ Cherry-pick go functions to run from cmd.
 
 ##Installation
 
