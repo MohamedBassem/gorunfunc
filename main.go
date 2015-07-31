@@ -9,6 +9,7 @@ import (
 	"log"
 	"math/rand"
 	"os"
+	"os/exec"
 	"regexp"
 	"strings"
 	"time"
@@ -17,6 +18,13 @@ import (
 func checkError(err error) {
 	if err != nil {
 		log.Fatal("ERR: " + err.Error())
+	}
+}
+
+func checkRemError(err error, filename string) {
+	if err != nil {
+		os.Remove(filename)
+		checkError(err)
 	}
 }
 
@@ -87,6 +95,34 @@ func extractPackage() string {
 	return packageName
 }
 
+func generateAndFmtFile(testFileName, fileContent string) {
+	err := ioutil.WriteFile(testFileName, []byte(fileContent), 0644)
+	checkError(err)
+
+	cmd := exec.Command("goimports", "-w=true", testFileName)
+	output, err := cmd.CombinedOutput()
+	if len(output) == 0 && err != nil {
+		checkRemError(err, testFileName)
+	}
+	fmt.Print(string(output))
+}
+
+func runFile(testname, filename string) {
+	cmd := exec.Command("go", "test", "--run", testname)
+	output, err := cmd.CombinedOutput()
+	stdout := string(output)
+	stdoutLines := strings.Split(stdout, "\n")
+	if len(output) == 0 && err != nil {
+		checkRemError(err, filename)
+	} else if err != nil {
+		stdout = strings.Join(stdoutLines[:len(stdoutLines)-2], "\n")
+		fmt.Println(stdout)
+	} else {
+		stdout = strings.Join(stdoutLines[:len(stdoutLines)-3], "\n")
+		fmt.Println(stdout)
+	}
+}
+
 func main() {
 	dryRun := flag.Bool("dry-run", false, "Print the test file")
 	flag.Parse()
@@ -100,9 +136,17 @@ func main() {
 
 	functionCall := args[0]
 
-	fileContent := fmt.Sprintf(templateString, packageName, randString(10), functionCall)
+	testRandomName := randString(10)
+	testFileName := testRandomName + "_test.go"
+	fileContent := fmt.Sprintf(templateString, packageName, testRandomName, functionCall)
+	generateAndFmtFile(testFileName, fileContent)
+	defer os.Remove(testFileName)
+
 	if *dryRun {
-		fmt.Println(fileContent)
+		content, _ := ioutil.ReadFile(testFileName)
+		fmt.Println(string(content))
+	} else {
+		runFile(testRandomName, testFileName)
 	}
 }
 
