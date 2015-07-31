@@ -60,7 +60,6 @@ func extractFilePackage(filename string) (string, error) {
 }
 
 func extractPackage() string {
-	rand.Seed(time.Now().Unix())
 	workingDir, err := os.Getwd()
 	checkError(err)
 	dirFiles, err := ioutil.ReadDir(workingDir)
@@ -121,6 +120,10 @@ func runFile(testname, filename string) {
 		stdout = strings.Join(stdoutLines[:len(stdoutLines)-3], "\n")
 		fmt.Println(stdout)
 	}
+}
+
+func init() {
+	rand.Seed(time.Now().UnixNano())
 }
 
 func main() {
