@@ -72,7 +72,7 @@ func extractPackage() string {
 	checkError(err)
 	dirFiles, err := ioutil.ReadDir(workingDir)
 	checkError(err)
-	goFiles := make([]string, 0)
+	var goFiles []string
 	for _, file := range dirFiles {
 		if !file.IsDir() {
 			isGoFile, _ := regexp.Match("\\.go$", []byte(file.Name()))
