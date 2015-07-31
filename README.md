@@ -52,7 +52,7 @@ Hello World!
 - The test file is removed.
 
 To check the generated test file without execution, run the command with `--dry-run` flag. For instance, the dry run of the example would print:
-```bash
+```go
 package hello
 
 import "testing"
