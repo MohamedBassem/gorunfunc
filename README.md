@@ -52,6 +52,12 @@ Hello World!
 Hi!
 ````
 
+Other usages may include running arbitrary go code from the command line, for example:
+```bash
+$ gofuncrun 'fmt.Println(3*2)'
+6
+```
+
 ##How It Works
 
 - The package name is extracted from other files in the directory.
