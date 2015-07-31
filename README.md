@@ -54,7 +54,7 @@ Hi!
 
 Other usages may include running arbitrary go code from the command line, for example:
 ```bash
-$ gofuncrun 'fmt.Println(3*2)'
+$ gorunfunc 'fmt.Println(3*2)'
 6
 ```
 
